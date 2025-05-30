@@ -1,30 +1,60 @@
 package management;
 
+import datastructures.maps.CustomHashMap;
 import library.Member;
 import library.Transaction;
 
 public class MemberManager {
-    // TODO: Define a data structure that stores memberIds and their matching member objects
+    private CustomHashMap<String, Member> members;
 
     public MemberManager() {
-        // TODO: Initialize your data structure here
+        this.members = new CustomHashMap<>();
     }
 
     public void addMember(Member member) {
-        // TODO: Add member and their id to your data structure
+        if (member == null) {
+            throw new IllegalArgumentException("Member cannot be null");
+        }
+        if (member.getMemberId() == null || member.getMemberId().trim().isEmpty()) {
+            throw new IllegalArgumentException("Member ID cannot be null or empty");
+        }
+        members.put(member.getMemberId(), member);
     }
 
     public Member getMember(String memberId) {
-        // TODO
-        return null;
+        if (memberId == null || memberId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Member ID cannot be null or empty");
+        }
+        return members.get(memberId);
     }
 
     public void recordTransaction(String memberId, Transaction transaction) {
-        // TODO
+        if (memberId == null || memberId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Member ID cannot be null or empty");
+        }
+        if (transaction == null) {
+            throw new IllegalArgumentException("Transaction cannot be null");
+        }
+
+        Member member = getMember(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("Member with ID " + memberId + " not found");
+        }
+
+        member.addTransaction(transaction);
     }
 
     public Transaction getLastTransaction(String memberId) {
-        // TODO
-        return null;
+        if (memberId == null || memberId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Member ID cannot be null or empty");
+        }
+
+        Member member = getMember(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("Member with ID " + memberId + " not found");
+        }
+
+        return member.getLastTransaction();
     }
+
 }

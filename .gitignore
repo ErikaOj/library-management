@@ -2,7 +2,10 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+<<<<<<< HEAD
 .idea/
+=======
+>>>>>>> bb5fb7b (initial commit)
 
 ### Eclipse ###
 .apt_generated
@@ -27,4 +30,11 @@ bin/
 .vscode/
 
 ### Mac OS ###
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+library management.iml
+out
+.idea
+>>>>>>> bb5fb7b (initial commit)
